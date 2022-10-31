@@ -46,8 +46,8 @@ const NFTDetails = ({nfts, buyNft,currentAddress,Loading}) => {
               <img src={Matic} alt="logo" width={20} className="ml-5"/>
             <h6 className="text-2xl font-medium ml-1">{nft.price} MATIC</h6>
             </div>
-            <p className="text-gray-500 font-medium m-5">The Seller is {nft.seller}</p>
-            <p className="text-gray-500 font-medium m-5">The Owner is {nft.owner}</p>
+            <p className="text-gray-500 font-medium m-5">The Seller is {nft.seller.slice(0,5) + '...' + nft.seller.slice(35,42)}</p>
+            <p className="text-gray-500 font-medium m-5">The Owner is {nft.owner.slice(0,5) + '...' + nft.owner.slice(35,42)}</p>
             <p className="text-gray-500 font-medium m-5">{nft.description}</p>
             <div className="border border-gray-300 m-5 rounded h-70 ">
               <div className="flex">

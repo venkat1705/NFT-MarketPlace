@@ -3,6 +3,7 @@ import { ethers } from 'ethers'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MarketPlaceAbi from '../contractsData/NFTMarketplace.json'
+import {MarketPlaceAddress} from '../config'
 
 const ResellNFT = () => {
     const [formInput, updateFormInput] = useState({ price: '', image: '' });
@@ -28,7 +29,7 @@ const ResellNFT = () => {
     if (!price) return
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const signer = provider.getSigner()
-    let contract = new ethers.Contract(process.env.MarketPlaceAddress, MarketPlaceAbi.abi, signer)
+    let contract = new ethers.Contract(MarketPlaceAddress, MarketPlaceAbi.abi, signer)
 
     const priceFormatted = ethers.utils.parseUnits(formInput.price, 'ether')
     let listingPrice = await contract.getListingPrice()

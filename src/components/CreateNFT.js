@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import {useNavigate} from 'react-router-dom'
-import {INFURA_API_KEY,INFURA_APP_SECRET} from '../config'
+import {INFURA_API_KEY,INFURA_APP_SECRET,MarketPlaceAddress} from '../config'
 import MarketplaceAbi from '../contractsData/NFTMarketplace.json'
 import { ethers } from 'ethers';
 import {Buffer} from 'buffer';
@@ -68,7 +68,7 @@ const CreateNFT = ({toast}) => {
         const signer = provider.getSigner();
 
         //Pull the deployed contract instance
-        let contract = new ethers.Contract(process.env.MarketPlaceAddress, MarketplaceAbi.abi, signer)
+        let contract = new ethers.Contract(MarketPlaceAddress, MarketplaceAbi.abi, signer)
 
         //massage the params to be sent to the create NFT request
         const Price = ethers.utils.parseUnits(price, 'ether')

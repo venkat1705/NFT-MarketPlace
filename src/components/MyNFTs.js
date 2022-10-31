@@ -2,6 +2,7 @@ import axios from 'axios';
 import { ethers } from 'ethers';
 import React, { useEffect, useState } from 'react'
 import MarketplaceAbi from '../contractsData/NFTMarketplace.json'
+import {MarketPlaceAddress} from '../config'
 import {useNavigate } from 'react-router-dom';
 import Matic from '../assets/logo_mumbai.svg'
 import ScaleLoader from "react-spinners/ScaleLoader";
@@ -25,7 +26,7 @@ const MyNFTs = () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner()
 
-    const marketplaceContract = new ethers.Contract(process.env.MarketPlaceAddress, MarketplaceAbi.abi, signer)
+    const marketplaceContract = new ethers.Contract(MarketPlaceAddress, MarketplaceAbi.abi, signer)
     const data = await marketplaceContract.fetchMyNFTs()
 
     const items = await Promise.all(data.map(async i => {
