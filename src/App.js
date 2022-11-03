@@ -89,7 +89,7 @@ function App() {
         <Route path="/mynfts" element={<MyNFTs />} />
         <Route path="/create" element={<CreateNFT toast={toast}/>} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/resell" element={<ResellNFT />} />
+        <Route path="/resell" element={<ResellNFT toast={toast}/>} />
         <Route path={`/detail/:id`} element={<NFTDetails nfts={nfts} buyNft={buyNft} currentAddress={currentAddress} Loading={Loading} toast={toast}/>} />
       </Routes>
         )

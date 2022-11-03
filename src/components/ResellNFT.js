@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import MarketPlaceAbi from '../contractsData/NFTMarketplace.json'
 import {MarketPlaceAddress} from '../config'
 
-const ResellNFT = () => {
+const ResellNFT = ({toast}) => {
     const [formInput, updateFormInput] = useState({ price: '', image: '' });
     const [Loading,setLoading] = useState(false);
   const queryParams = new URLSearchParams(window.location.search);
@@ -33,7 +33,6 @@ const ResellNFT = () => {
 
     const priceFormatted = ethers.utils.parseUnits(formInput.price, 'ether')
     let listingPrice = await contract.getListingPrice()
-
     listingPrice = listingPrice.toString()
     let transaction = await contract.resellToken(id, priceFormatted, { value: (listingPrice) })
     await transaction.wait()

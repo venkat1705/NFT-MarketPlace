@@ -64,10 +64,10 @@ const NFTDetails = ({nfts, buyNft,currentAddress,Loading}) => {
                 <div className="flex">
                 {
                   currentAddress !== nft.seller?(
-                    <button onClick={()=>{buyNft(nft)}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-1/2 m-5 h-14" disabled={Loading}>{Loading?'busy..':'Buy NFT'}</button>
+                    <button onClick={()=>{buyNft(nft)}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-1/2 m-5 h-14 disabled:opacity-10" disabled={Loading}>{Loading?'busy..':'Buy NFT'}</button>
                   ):
                   (
-                    <button onClick={()=>{buyNft(nft)}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-1/2 m-5 h-14 cursor-not-allowed disabled:opacity-25" disabled >Buy NFT</button>
+                    <button onClick={()=>{buyNft(nft)}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-1/2 m-5 h-14 cursor-not-allowed disabled:opacity-10" disabled >Buy NFT</button>
                   )
                 }
                 <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow w-1/2 h-14 m-5">Make Offer</button>

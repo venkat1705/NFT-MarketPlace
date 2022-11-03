@@ -28,8 +28,14 @@ export default function Navbar({toast}) {
   const ConnectWallet = async () =>{
   if(typeof window !== 'undefined' && typeof window.ethereum !== 'undefined'){
    try {
+    const chainId = await window.ethereum.request({method: 'eth_chainId'});
+    if(chainId !== '0x13881'){
+      toast.error('Please connect to Polygon TESTNetwork');
+      return;
+    }
     const accounts = await window.ethereum.request({method:'eth_requestAccounts'})
     setCurrentAddress(accounts[0]);
+    window.location.reload();
    } catch (error) {
     console.log(error.message)
    }
@@ -63,6 +69,7 @@ const AccountChangeHandler = async () =>{
   if(typeof window !== 'undefined' && typeof window.ethereum !== 'undefined'){
    window.ethereum.on('accountsChanged',(accounts)=>{
       setCurrentAddress(accounts[0]);
+      window.location.reload();
    });
   }else{
     setCurrentAddress("");

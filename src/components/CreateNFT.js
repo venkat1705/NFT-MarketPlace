@@ -66,6 +66,8 @@ const CreateNFT = ({toast}) => {
         //After adding your Hardhat network to your metamask, this code will get providers and signers
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
+        const address = signer.getAddress();
+        const balance = signer.getBalance(address);
 
         //Pull the deployed contract instance
         let contract = new ethers.Contract(MarketPlaceAddress, MarketplaceAbi.abi, signer)
