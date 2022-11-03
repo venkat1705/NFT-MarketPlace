@@ -50,23 +50,6 @@ function App() {
     setCurrentAddress(address);
     setLoading(false)
   }
-  async function buyNft(nft) {
-    /* needs the user to sign the transaction, so will use Web3Provider and sign it */
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner()
-    const contract = new ethers.Contract(MarketPlaceAddress, MarketPlaceAbi.abi, signer)
-    const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')   
-    const transaction = await contract.CreateMarketSale(nft.tokenId, {
-      value: price
-    })
-    await transaction.wait()
-    toast.success("NFT Buying is Successfull",{
-      position:toast.POSITION.TOP_RIGHT
-    })
-    loadNFTs()
-    
-    
-  }
 
   return (
     <>
@@ -85,12 +68,12 @@ function App() {
             </div>
         ):(
           <Routes>
-        <Route exact path="/" element={<Home nfts={nfts} buyNft={buyNft} Loading={Loading} currentAddress={currentAddress}/>} />
+        <Route exact path="/" element={<Home nfts={nfts} Loading={Loading} currentAddress={currentAddress}/>} />
         <Route path="/mynfts" element={<MyNFTs />} />
         <Route path="/create" element={<CreateNFT toast={toast}/>} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/resell" element={<ResellNFT />} />
-        <Route path={`/detail/:id`} element={<NFTDetails nfts={nfts} buyNft={buyNft} currentAddress={currentAddress} Loading={Loading} toast={toast}/>} />
+        <Route path={`/detail/:id`} element={<NFTDetails nfts={nfts} loadNFTs={loadNFTs} Loading={Loading} currentAddress={currentAddress} toast={toast}/>} />
       </Routes>
         )
       }

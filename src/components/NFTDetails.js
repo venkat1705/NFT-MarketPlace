@@ -1,8 +1,11 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import Matic from '../assets/logo_mumbai.svg'
 import {BiTimeFive} from 'react-icons/bi'
 import ScaleLoader from "react-spinners/ScaleLoader";
+import {MarketPlaceAddress} from '../config'
+import MarketPlaceAbi from '../contractsData/NFTMarketplace.json'
+import { ethers } from 'ethers';
 
 const override = {
   display: "block",
@@ -11,8 +14,26 @@ const override = {
 };
 
 
-const NFTDetails = ({nfts, buyNft,currentAddress,Loading}) => {
+const NFTDetails = ({nfts,currentAddress,Loading,toast,loadNFTs}) => {
   const {id} = useParams();
+  const navigate = useNavigate();
+
+  async function buyNft(nft) {
+    /* needs the user to sign the transaction, so will use Web3Provider and sign it */
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner()
+    const contract = new ethers.Contract(MarketPlaceAddress, MarketPlaceAbi.abi, signer)
+    const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')   
+    const transaction = await contract.CreateMarketSale(nft.tokenId, {
+      value: price
+    })
+    await transaction.wait()
+    toast.success("NFT Buying is Successfull",{
+      position:toast.POSITION.TOP_RIGHT
+    })
+    navigate('/mynfts')
+    loadNFTs()
+  }
   if(Loading === false && !nfts.length){
     return (
       <h2 className="text-center font-medium">Nothing To Display</h2>

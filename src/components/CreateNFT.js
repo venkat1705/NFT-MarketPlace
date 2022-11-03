@@ -24,7 +24,6 @@ const CreateNFT = ({toast}) => {
   const [price,setPrice] = useState("");
   const navigate = useNavigate();
   const [Loading,setLoading] = useState(false);
-
   async function onChange(e) {
     const file = e.target.files[0]
     try {
@@ -95,7 +94,7 @@ const CreateNFT = ({toast}) => {
     }
 }
   return (
-    <div className="w-1/3 mx-auto mt-5">
+    <div className="w-1/3 mx-auto mt-5 ">
   <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <div className="mb-4">
       <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -125,13 +124,13 @@ const CreateNFT = ({toast}) => {
     {
       !name || !price || !description ? (
         <button type="button" onClick={listNFT}
-    className="px-8 py-3 text-white bg-blue-600 rounded cursor-not-allowed focus:outline-none disabled:opacity-75" disabled>
+    className="px-8 py-3 text-white bg-blue-600 rounded cursor-not-allowed focus:outline-none disabled:opacity-40" disabled>
     Create NFT
   </button>
       ):
       (
         <button type="button" onClick={listNFT}
-    className="px-8 py-3 text-white bg-blue-600 rounded focus:outline-none" disabled={Loading}>{Loading?'Busy...':'CreateNFT'}</button>
+          className="px-8 py-3 text-white bg-blue-600 rounded focus:outline-none disabled:opacity-40 cursor-not-allowed" disabled={Loading}>{Loading?'Busy...':'CreateNFT'}</button>
       )
     }
       
