@@ -63,6 +63,7 @@ const AccountChangeHandler = async () =>{
   if(typeof window !== 'undefined' && typeof window.ethereum !== 'undefined'){
    window.ethereum.on('accountsChanged',(accounts)=>{
       setCurrentAddress(accounts[0]);
+      window.location.reload();
    });
   }else{
     setCurrentAddress("");
