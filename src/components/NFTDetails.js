@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Matic from '../assets/logo_mumbai.svg'
 import {BiTimeFive} from 'react-icons/bi'

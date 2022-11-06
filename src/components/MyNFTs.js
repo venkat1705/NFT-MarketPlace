@@ -58,7 +58,6 @@ const MyNFTs = () => {
   }
   if(loading === true){
     return (
-      // <p className="text-center font-medium align-center">Loading .....</p>
       <div className="text-center m-auto mt-24">
         <ScaleLoader
       loading={loading}
