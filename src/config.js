@@ -1,5 +1,5 @@
 module.exports={
-    MarketPlaceAddress :"0x535Fc0A608652Ea4F8177753847D6A5Cf726DBa0",
-    INFURA_API_KEY :"2GlZhzTx3pbae8VLyMPDrOgGrWb",
-    INFURA_APP_SECRET:"295a6cc4a7f02d2c6fd9a7f9bc6a2528"
+    MarketPlaceAddress :"",
+    INFURA_API_KEY :"",
+    INFURA_APP_SECRET:""
 }
